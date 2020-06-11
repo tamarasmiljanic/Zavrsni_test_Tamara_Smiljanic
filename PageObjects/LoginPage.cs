@@ -88,12 +88,12 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             }
         }
 
-        public HomePage FillLoginData()
+        public HomePage FillLoginData(string user,string pass)
         {
-            this.UserNameInput?.SendKeys("tamara1979");
-            this.PasswordInput?.SendKeys("Smiljka1979");
+            this.UserNameInput?.SendKeys(user);
+            this.PasswordInput?.SendKeys(pass);
             this.LogInBtn?.Click();
-            wait.Until(EC.ElementIsVisible(By.XPath("//a[@class='navbar-brand']")));
+            //wait.Until(EC.ElementIsVisible(By.XPath("//a[@class='navbar-brand']")));
             return new HomePage(this.driver);
 
         }

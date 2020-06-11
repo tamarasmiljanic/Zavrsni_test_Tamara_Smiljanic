@@ -129,6 +129,14 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             }
         }
 
+        public IWebElement CartLink
+        {
+            get
+            {
+                return FindElement(By.XPath("//a[@href='/cart']"));
+            }
+        }
+
         public RegistrationPage ClickOnRegisterLink()
         {
             wait.Until(EC.ElementIsVisible(By.XPath("//a[@href='/register']")));
@@ -143,7 +151,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             return new LoginPage(this.driver);
         }
         
-        public CartPage AddToCart()
+        public HomePage AddToCart()
         {
             this.Quantity1?.SelectByValue("2");
             this.Order1?.Click();
@@ -151,6 +159,13 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             cart.ContinueShoping?.Click();
             this.Quantity2?.SelectByValue("3");
             this.Order2?.Click();
+            cart.ContinueShoping?.Click();
+            System.Threading.Thread.Sleep(4000);
+            return new HomePage(this.driver);
+        }
+        public CartPage ClickOnCartLink()
+        {
+            this.CartLink?.Click();
             return new CartPage(this.driver);
         }
 
