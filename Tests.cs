@@ -61,18 +61,20 @@ namespace ZavrsniTest_SmiljanicTamara
                 TestContext.WriteLine("Successful login");
                 home = home.AddToCart();
                 CartPage cart = home.ClickOnCartLink();
-                System.Threading.Thread.Sleep(4000);
+                
                 //double CartTotal = cart.Total;
                 //int OrderNumber = cart.orderNum;
                 CheckOutPage checkout = cart.ClickOnCheckOut();
-                System.Threading.Thread.Sleep(4000);
+                
                 double CheckTotal = checkout.TotalAmount;
                 int checkNumber = checkout.OrderNumber;
+                TestContext.WriteLine("{0} {1}", CheckTotal, checkNumber);
                 History historyTable = checkout.ClickOnOrderHistory();
-                System.Threading.Thread.Sleep(4000);
+                
                 double historyTotal = historyTable.orderAmount;
                 int historyOrderNum = historyTable.orderNum;
-                if ((CheckTotal == historyTotal) && (checkNumber == historyOrderNum))
+                TestContext.WriteLine("{0} {1}", historyTotal/100, historyOrderNum);
+                if ((CheckTotal == historyTotal/100) && (checkNumber == historyOrderNum))
                 {
                     Assert.Pass();
                 }

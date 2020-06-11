@@ -160,7 +160,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             this.Quantity2?.SelectByValue("3");
             this.Order2?.Click();
             cart.ContinueShoping?.Click();
-            System.Threading.Thread.Sleep(4000);
+            
             return new HomePage(this.driver);
         }
         public CartPage ClickOnCartLink()
