@@ -36,6 +36,44 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             return element;
         }
 
+        public int OrderNumber
+        {
+            get
+            {
+                int Onum = 0;
+                try
+                {
+                    IWebElement element=this.getElement(By.XPath("//h2[contains(text(),'Order ')]"));
+                    string text = Regex.Replace(element.Text, "[^0-9]", "");
+                    Onum = Convert.ToInt32(text);
+                }
+                catch (Exception)
+                {
+
+                }
+                return Onum;         
+            }
+        }
+
+        public double TotalAmount
+        {
+            get
+            {
+                double Onum = 0;
+                try
+                {
+                    IWebElement element = this.getElement(By.XPath("//h3[contains(text(),'Your credit card')]"));
+                    string text = Regex.Replace(element.Text, "[^0-9]", "");
+                    Onum = Convert.ToDouble(text);
+                }
+                catch (Exception)
+                {
+
+                }
+                return Onum;
+            }
+        }
+
         public IWebElement OrderHistory
         {
             get

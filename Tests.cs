@@ -62,15 +62,17 @@ namespace ZavrsniTest_SmiljanicTamara
                 home = home.AddToCart();
                 CartPage cart = home.ClickOnCartLink();
                 System.Threading.Thread.Sleep(4000);
-                double CartTotal = cart.Total;
-                int OrderNumber = cart.orderNum;
+                //double CartTotal = cart.Total;
+                //int OrderNumber = cart.orderNum;
                 CheckOutPage checkout = cart.ClickOnCheckOut();
                 System.Threading.Thread.Sleep(4000);
+                double CheckTotal = checkout.TotalAmount;
+                int checkNumber = checkout.OrderNumber;
                 History historyTable = checkout.ClickOnOrderHistory();
                 System.Threading.Thread.Sleep(4000);
                 double historyTotal = historyTable.orderAmount;
                 int historyOrderNum = historyTable.orderNum;
-                if ((CartTotal == historyTotal) && (OrderNumber == historyOrderNum))
+                if ((CheckTotal == historyTotal) && (checkNumber == historyOrderNum))
                 {
                     Assert.Pass();
                 }
