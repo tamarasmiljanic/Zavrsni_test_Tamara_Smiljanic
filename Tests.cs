@@ -57,11 +57,11 @@ namespace ZavrsniTest_SmiljanicTamara
             HomePage home = new HomePage(this.driver);
             home.GoToPage();
             LoginPage login = home.ClickOnLogIn();
-            home = login.ClickOnLoginBtn("tamara1979", "Smiljka1979");
+            home = login.FillLoginData();
+            System.Threading.Thread.Sleep(4000);
             if (home.WelcomeBack != null)
             {
-                
-             
+                TestContext.WriteLine("Successful login");
             }
             else
             {

@@ -120,12 +120,12 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
                 try
                 {
                     element = this.wait.Until(EC.ElementIsVisible(By.XPath("//h2[contains(text(),'Welcome back,')]")));
-                }catch (Exception)
+                }
+                catch (Exception)
                 {
                     element = null;
                 }
                 return element;
-                
             }
         }
 

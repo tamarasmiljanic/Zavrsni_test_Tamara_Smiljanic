@@ -43,8 +43,16 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
         {
             get
             {
-                
-                return FindElement(By.XPath("//input[@class='form-control'][1]"));
+                IWebElement element;
+                try
+                {
+                    element = this.driver.FindElement(By.Name("username"));
+                }
+                catch (Exception)
+                {
+                    element = null;
+                }
+                return element;
             }
         }
 
@@ -52,7 +60,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
         {
             get
             {
-                return FindElement(By.XPath("//input[@class='form-control'][2]"));
+                return FindElement(By.Name("password"));
             }
         }
 
@@ -80,14 +88,14 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             }
         }
 
-        public HomePage ClickOnLoginBtn(string userN, string passw)
+        public HomePage FillLoginData()
         {
-            //this.wait.Until(EC.ElementToBeClickable(By.Name("username")));
-            this.UserNameInput?.SendKeys(userN);
-            this.PasswordInput?.SendKeys(passw);
+            this.UserNameInput?.SendKeys("tamara1979");
+            this.PasswordInput?.SendKeys("Smiljka1979");
             this.LogInBtn?.Click();
-           
+            wait.Until(EC.ElementIsVisible(By.XPath("//a[@class='navbar-brand']")));
             return new HomePage(this.driver);
+
         }
     }
 }
