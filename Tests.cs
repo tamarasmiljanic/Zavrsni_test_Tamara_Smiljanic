@@ -48,35 +48,26 @@ namespace ZavrsniTest_SmiljanicTamara
             {
                 TestContext.WriteLine("User isn't registered");
             }
-            LoginPage login = home.ClickOnLogIn();
-            home = login.ClickOnLoginBtn(username,password);
-            if (home.WelcomeBack !=null)
-            {
-                TestContext.WriteLine("Success");
-            }
-            else
-            {
-                TestContext.WriteLine("Unsuccessful login");
-            }
         }
 
-        /*[Test]
+        [Test]
         [Category("shop.qa.rs")]
         public void TestLogin()
         {
             HomePage home = new HomePage(this.driver);
             home.GoToPage();
             LoginPage login = home.ClickOnLogIn();
-            home = login.ClickOnLoginBtn(ListOfUsers[0]);
-            if (home.WelcomeBack!=null)
+            home = login.ClickOnLoginBtn("tamara1979", "Smiljka1979");
+            if (home.WelcomeBack != null)
             {
-                TestContext.WriteLine("User is successfuly login");
+                
+             
             }
             else
             {
-                TestContext.WriteLine("Such user does not exist");
+                TestContext.WriteLine("Unsuccessful login");
             }
-        }*/
+        }
 
         [TearDown]
         public void TearDown()

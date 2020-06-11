@@ -121,11 +121,12 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             this.FirstName?.SendKeys("Tamara");
             this.LasttName?.SendKeys("Smiljanic");
             this.Email?.SendKeys("tamarasmiljanic@gmail.com");
-            this.UserName?.SendKeys("smiljka1979");
+            this.UserName?.SendKeys("tamara1979");
             user = this.UserName?.Text;
             this.Password?.SendKeys("Smiljka1979");
             pass = this.Password?.Text;
-            this.ConfirmPassword?.SendKeys(pass);
+            this.ConfirmPassword?.SendKeys("Smiljka1979");
+            this.RegisterBtn?.Click();
             return new HomePage(this.driver);
         }
 

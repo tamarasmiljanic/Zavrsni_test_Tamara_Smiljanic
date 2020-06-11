@@ -24,5 +24,33 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             this.driver = driver;
             this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
+
+        public IWebElement FindElement(By by)
+        {
+            IWebElement element;
+            try
+            {
+                element = this.driver.FindElement(by);
+            }
+            catch (Exception)
+            {
+                element = null;
+            }
+            return element;
+        }
+
+        public IWebElement ContinueShoping
+        {
+            get
+            {
+                return this.FindElement(By.XPath("//a[contains(text(),'Continue shopping')]"));
+            }
+        }
+
+        public HomePage ContinueShopingOnHomePage()
+        {
+            this.ContinueShoping?.Click();
+            return new HomePage(this.driver);
+        }
     }
 }

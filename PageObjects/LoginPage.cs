@@ -22,7 +22,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         public IWebElement FindElement(By by)
@@ -39,19 +39,20 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             return element;
         }
 
-        public IWebElement UserName
+        public IWebElement UserNameInput
         {
             get
             {
-                return FindElement(By.Name("username"));
+                
+                return FindElement(By.XPath("//input[@class='form-control'][1]"));
             }
         }
 
-        public IWebElement Password
+        public IWebElement PasswordInput
         {
             get
             {
-                return FindElement(By.Name("password"));
+                return FindElement(By.XPath("//input[@class='form-control'][2]"));
             }
         }
 
@@ -81,10 +82,11 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
 
         public HomePage ClickOnLoginBtn(string userN, string passw)
         {
-            this.UserName?.SendKeys(userN);
-            this.Password?.SendKeys(passw);
+            //this.wait.Until(EC.ElementToBeClickable(By.Name("username")));
+            this.UserNameInput?.SendKeys(userN);
+            this.PasswordInput?.SendKeys(passw);
             this.LogInBtn?.Click();
-            wait.Until(EC.ElementIsVisible(By.XPath("//a[@class='navbar-brand']")));
+           
             return new HomePage(this.driver);
         }
     }

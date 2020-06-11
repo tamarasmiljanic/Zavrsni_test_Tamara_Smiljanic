@@ -42,6 +42,21 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             return element;
         }
 
+        public SelectElement ListItem(By by)
+        {
+            IWebElement element;
+            SelectElement item;
+            try
+            {
+                element = FindElement(by);
+                item = new SelectElement(element);
+            }
+            catch (Exception)
+            {
+                item = null;
+            }
+            return item;
+        }
         public IWebElement LoginLink
         {
             get
@@ -58,6 +73,37 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             }
         }
 
+        public SelectElement Quantity1
+        {
+            get
+            {
+                return ListItem(By.XPath("//div[@class='col-sm-3 text-center'][1]/div[@class='panel panel-default']/div[@class='panel-body text-justify']/form/p[@class='text-center']/select"));
+            }
+        }
+
+        public SelectElement Quantity2
+        {
+            get
+            {
+                return ListItem(By.XPath("/html/body/div[@class='container']/div[@class='row'][4]/div[@class='col-sm-3 text-center'][4]/div[@class='panel panel-success']/div[@class='panel-body text-justify']/form/p[@class='text-center']/select"));
+            }
+        }
+
+        public  IWebElement Order1
+        {
+            get
+            {
+                return FindElement(By.XPath("//div[@class='col-sm-3 text-center'][1]/div[@class='panel panel-default']/div[@class='panel-body text-justify']/form/p[@class='text-center margin-top-20']/input[@class='btn btn-primary']"));
+            }
+        }
+
+        public IWebElement Order2
+        {
+            get
+            {
+                return FindElement(By.XPath("//div[@class='col-sm-3 text-center'][4]/div[@class='panel panel-success']/div[@class='panel-body text-justify']/form/p[@class='text-center margin-top-20']/input[@class='btn btn-primary']"));
+            }
+        }
         public IWebElement SucessfulRegistration
         {
             get
@@ -70,8 +116,16 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
         {
             get
             {
-                wait.Until(EC.ElementIsVisible(By.XPath("//h2[contains(text(),'Welcome back,')]")));
-                return this.FindElement(By.XPath("//h2[contains(text(),'Welcome back,')]"));
+                IWebElement element;
+                try
+                {
+                    element = this.wait.Until(EC.ElementIsVisible(By.XPath("//h2[contains(text(),'Welcome back,')]")));
+                }catch (Exception)
+                {
+                    element = null;
+                }
+                return element;
+                
             }
         }
 
@@ -87,6 +141,17 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             wait.Until(EC.ElementIsVisible(By.XPath("//a[@href='/login']")));
             this.LoginLink?.Click();
             return new LoginPage(this.driver);
+        }
+        
+        public CartPage AddToCart()
+        {
+            this.Quantity1?.SelectByValue("2");
+            this.Order1?.Click();
+            CartPage cart = new CartPage(this.driver);
+            cart.ContinueShoping?.Click();
+            this.Quantity2?.SelectByValue("3");
+            this.Order2?.Click();
+            return new CartPage(this.driver);
         }
 
     }
