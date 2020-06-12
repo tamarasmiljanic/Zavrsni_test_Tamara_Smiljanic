@@ -70,7 +70,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
                 {
 
                 }
-                return num;
+                return num/100;
             }
         }
     }

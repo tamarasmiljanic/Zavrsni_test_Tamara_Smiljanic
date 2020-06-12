@@ -121,7 +121,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
             this.FirstName?.SendKeys("Tamara");
             this.LasttName?.SendKeys("Smiljanic");
             this.Email?.SendKeys("tamarasmiljanic@gmail.com");
-            this.UserName?.SendKeys("tamara1979");
+            this.UserName?.SendKeys("tasa1979");
             user = this.UserName?.Text;
             this.Password?.SendKeys("Smiljka1979");
             pass = this.Password?.Text;

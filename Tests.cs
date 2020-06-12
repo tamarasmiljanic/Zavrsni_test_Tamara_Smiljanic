@@ -31,6 +31,13 @@ namespace ZavrsniTest_SmiljanicTamara
         [Category("shop.qa.rs")]
         public void TestRegistration()
         {
+            
+        }
+
+        [Test]
+        [Category("shop.qa.rs")]
+        public void TestShopQARS()
+        {
             HomePage home = new HomePage(this.driver);
             home.GoToPage();
             RegistrationPage register = home.ClickOnRegisterLink();
@@ -45,35 +52,29 @@ namespace ZavrsniTest_SmiljanicTamara
             {
                 TestContext.WriteLine("User isn't registered");
             }
-        }
 
-        [Test]
-        [Category("shop.qa.rs")]
-        public void TestLogin()
-        {
-            HomePage home = new HomePage(this.driver);
             home.GoToPage();
             LoginPage login = home.ClickOnLogIn();
-            home = login.FillLoginData("tamara1979","Smiljka1979");
-            //System.Threading.Thread.Sleep(4000);
+            home = login.FillLoginData(username,password);
+            
             if (home.WelcomeBack != null)
             {
                 TestContext.WriteLine("Successful login");
                 home = home.AddToCart();
+                TestContext.WriteLine("Selected items are added to shoping cart successfully.");
                 CartPage cart = home.ClickOnCartLink();
+                TestContext.WriteLine("View shoping cart from Home Page is valid link");
                 
-                //double CartTotal = cart.Total;
-                //int OrderNumber = cart.orderNum;
                 CheckOutPage checkout = cart.ClickOnCheckOut();
                 
                 double CheckTotal = checkout.TotalAmount;
                 int checkNumber = checkout.OrderNumber;
-                TestContext.WriteLine("{0} {1}", CheckTotal, checkNumber);
+                TestContext.WriteLine("Amount to pay from Checkout page: {0} Order number from checkout page: {1}", CheckTotal, checkNumber);
                 History historyTable = checkout.ClickOnOrderHistory();
                 
                 double historyTotal = historyTable.orderAmount;
                 int historyOrderNum = historyTable.orderNum;
-                TestContext.WriteLine("{0} {1}", historyTotal/100, historyOrderNum);
+                TestContext.WriteLine("Amount to pay from histry  page: {0} Order number from history page: {1}", historyTotal, historyOrderNum);
                 if ((CheckTotal == historyTotal/100) && (checkNumber == historyOrderNum))
                 {
                     Assert.Pass();
