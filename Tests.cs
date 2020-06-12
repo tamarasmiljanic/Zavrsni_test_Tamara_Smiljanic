@@ -68,10 +68,12 @@ namespace ZavrsniTest_SmiljanicTamara
                 
                 if ((CheckTotal == historyTotal) && (checkNumber == historyOrderNum))
                 {
+                    TestContext.WriteLine("Amount and order number are equal on  checkout and history page.");
                     Assert.Pass();
                 }
                 else
                 {
+                    TestContext.WriteLine("Amount and order number aren't equal on  checkout and history page.");
                     Assert.Fail();
                 }
         
