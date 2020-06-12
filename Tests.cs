@@ -29,13 +29,6 @@ namespace ZavrsniTest_SmiljanicTamara
 
         [Test]
         [Category("shop.qa.rs")]
-        public void TestRegistration()
-        {
-            
-        }
-
-        [Test]
-        [Category("shop.qa.rs")]
         public void TestShopQARS()
         {
             HomePage home = new HomePage(this.driver);
