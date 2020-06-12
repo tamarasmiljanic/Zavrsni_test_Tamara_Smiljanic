@@ -17,8 +17,7 @@ namespace ZavrsniTest_SmiljanicTamara
     {
         IWebDriver driver;
         WebDriverWait wait;
-        string username,password;
-
+       
         [SetUp]
         public void SetUp()
         {
@@ -35,8 +34,7 @@ namespace ZavrsniTest_SmiljanicTamara
             home.GoToPage();
             RegistrationPage register = home.ClickOnRegisterLink();
             home = register.PressRegisterBtn();
-            username = register.ReturnUserName();
-            password = register.ReturnPassword();
+            
             if (home.SucessfulRegistration != null)
             {
                 TestContext.WriteLine("User registered successfuly");
@@ -48,7 +46,7 @@ namespace ZavrsniTest_SmiljanicTamara
 
             home.GoToPage();
             LoginPage login = home.ClickOnLogIn();
-            home = login.FillLoginData(username,password);
+            home = login.FillLoginData("tamara1979","Smiljka1979");
             
             if (home.WelcomeBack != null)
             {
@@ -62,13 +60,13 @@ namespace ZavrsniTest_SmiljanicTamara
                 
                 double CheckTotal = checkout.TotalAmount;
                 int checkNumber = checkout.OrderNumber;
-                TestContext.WriteLine("Amount to pay from Checkout page: {0} Order number from checkout page: {1}", CheckTotal, checkNumber);
+                
                 History historyTable = checkout.ClickOnOrderHistory();
                 
                 double historyTotal = historyTable.orderAmount;
                 int historyOrderNum = historyTable.orderNum;
-                TestContext.WriteLine("Amount to pay from histry  page: {0} Order number from history page: {1}", historyTotal, historyOrderNum);
-                if ((CheckTotal == historyTotal/100) && (checkNumber == historyOrderNum))
+                
+                if ((CheckTotal == historyTotal) && (checkNumber == historyOrderNum))
                 {
                     Assert.Pass();
                 }

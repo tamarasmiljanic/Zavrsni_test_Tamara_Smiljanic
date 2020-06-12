@@ -108,7 +108,7 @@ namespace ZavrsniTest_SmiljanicTamara.PageObjects
         {
             get
             {
-                this.wait.Until(EC.ElementIsVisible(By.XPath("//div[@class='alert alert-success']/strong[contains(text(),'Uspeh!')]"));
+                this.wait.Until(EC.ElementIsVisible(By.XPath("//div[@class='alert alert-success']/strong[contains(text(),'Uspeh!')]")));
                 return FindElement(By.XPath("//div[@class='alert alert-success']/strong[contains(text(),'Uspeh!')]"));
             }
         }
